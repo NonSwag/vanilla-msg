@@ -56,8 +56,8 @@ public class MessagePlugin {
         this.dataFolder = dataFolder;
         bundle = new ComponentBundle(new File(dataFolder().toFile(), "translations"), audience ->
                 audience instanceof Player player ? player.getPlayerSettings().getLocale() : Locale.US)
-                .register("vanilla", Locale.US)
-                .register("vanilla_german", Locale.GERMANY)
+                .register("vanilla_msg", Locale.US)
+                .register("vanilla_msg_german", Locale.GERMANY)
                 .fallback(Locale.US);
         bundle().miniMessage(MiniMessage.builder()
                 .tags(TagResolver.resolver(
