@@ -38,7 +38,8 @@ public class ReplyCommand {
                         plugin.bundle().sendMessage(source, "conversation.running");
                         return Command.SINGLE_SUCCESS;
                     }
-                    return MessageCommand.message(plugin, context, source, player);
+                    MessageCommand.message(plugin, context, source, player);
+                    return Command.SINGLE_SUCCESS;
                 });
     }
 }

@@ -51,17 +51,17 @@ public class MessageCommand {
                         plugin.bundle().sendMessage(source, "message.self");
                         return Command.SINGLE_SUCCESS;
                     }
-                    return message(plugin, context, source, player);
+                    message(plugin, context, source, player);
+                    return Command.SINGLE_SUCCESS;
                 });
     }
 
-    static int message(MessagePlugin plugin, CommandContext<CommandSource> context, Player source, Player player) {
+    static void message(MessagePlugin plugin, CommandContext<CommandSource> context, Player source, Player player) {
         var sender = Placeholder.parsed("sender", source.getUsername());
         var receiver = Placeholder.parsed("receiver", player.getUsername());
         var message = Placeholder.parsed("message", context.getArgument("message", String.class));
         plugin.bundle().sendMessage(source, "message.out", receiver, sender, message);
         plugin.bundle().sendMessage(player, "message.in", receiver, sender, message);
         plugin.conversations().put(player, source);
-        return Command.SINGLE_SUCCESS;
     }
 }
