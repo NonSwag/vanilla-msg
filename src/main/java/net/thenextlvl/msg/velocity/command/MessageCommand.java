@@ -4,6 +4,7 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
+import com.mojang.brigadier.context.CommandContext;
 import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
@@ -50,13 +51,17 @@ public class MessageCommand {
                         plugin.bundle().sendMessage(source, "message.self");
                         return Command.SINGLE_SUCCESS;
                     }
-                    var sender = Placeholder.parsed("sender", source.getUsername());
-                    var receiver = Placeholder.parsed("receiver", player.getUsername());
-                    var message = Placeholder.parsed("message", context.getArgument("message", String.class));
-                    plugin.bundle().sendMessage(source, "message.out", receiver, sender, message);
-                    plugin.bundle().sendMessage(player, "message.in", receiver, sender, message);
-                    plugin.conversations().put(player, source);
-                    return Command.SINGLE_SUCCESS;
+                    return message(plugin, context, source, player);
                 });
+    }
+
+    static int message(MessagePlugin plugin, CommandContext<CommandSource> context, Player source, Player player) {
+        var sender = Placeholder.parsed("sender", source.getUsername());
+        var receiver = Placeholder.parsed("receiver", player.getUsername());
+        var message = Placeholder.parsed("message", context.getArgument("message", String.class));
+        plugin.bundle().sendMessage(source, "message.out", receiver, sender, message);
+        plugin.bundle().sendMessage(player, "message.in", receiver, sender, message);
+        plugin.conversations().put(player, source);
+        return Command.SINGLE_SUCCESS;
     }
 }

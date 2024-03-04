@@ -7,7 +7,6 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.thenextlvl.msg.velocity.MessagePlugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -39,13 +38,7 @@ public class ReplyCommand {
                         plugin.bundle().sendMessage(source, "conversation.running");
                         return Command.SINGLE_SUCCESS;
                     }
-                    var sender = Placeholder.parsed("sender", source.getUsername());
-                    var receiver = Placeholder.parsed("receiver", player.getUsername());
-                    var message = Placeholder.parsed("message", context.getArgument("message", String.class));
-                    plugin.bundle().sendMessage(source, "message.out", receiver, sender, message);
-                    plugin.bundle().sendMessage(player, "message.in", receiver, sender, message);
-                    plugin.conversations().put(player, source);
-                    return Command.SINGLE_SUCCESS;
+                    return MessageCommand.message(plugin, context, source, player);
                 });
     }
 }
