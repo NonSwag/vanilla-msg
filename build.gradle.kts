@@ -45,6 +45,7 @@ tasks.shadowJar {
 paper {
     name = "VanillaMSG"
     main = "net.thenextlvl.msg.paper.MessagePlugin"
+    description = "A simple msg plugin"
     apiVersion = "1.19"
     foliaSupported = true
     website = "https://thenextlvl.net"
