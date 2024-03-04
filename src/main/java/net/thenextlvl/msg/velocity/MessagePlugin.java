@@ -32,7 +32,7 @@ import java.util.WeakHashMap;
 @Plugin(
         id = "vanilla-msg",
         name = "VanillaMSG",
-        version = "1.0.2",
+        version = "1.0.3",
         url = "https://thenextlvl.net",
         description = "A simple msg plugin using brigadier",
         authors = "NonSwag"
