@@ -32,7 +32,7 @@ import java.util.WeakHashMap;
 @Plugin(
         id = "vanilla-msg",
         name = "VanillaMSG",
-        version = "1.0.1",
+        version = "1.0.2",
         url = "https://thenextlvl.net",
         description = "A simple msg plugin using brigadier",
         authors = "NonSwag"
@@ -75,7 +75,7 @@ public class MessagePlugin {
     public void onInitialize(ProxyInitializeEvent event) {
         metricsFactory().make(this, 19942);
         server().getEventManager().register(this, new ConnectionListener(this));
-        server().getCommandManager().register(MessageCommand.create(this));
+        server().getCommandManager().register("msg", MessageCommand.create(this), "tell", "w");
         server().getCommandManager().register("reply", ReplyCommand.create(this), "r");
     }
 }
