@@ -1,5 +1,8 @@
 # VanillaMSG
 
+> [!IMPORTANT]
+> VanillaMSG is now a part of [Tweaks](https://github.com/TheNextLvl-net/tweaks)
+
 | Command                 | Description                                           | Aliases |
 |-------------------------|-------------------------------------------------------|---------|
 | /msg [player] [message] | Start a conversation with another player              | tell, w |
